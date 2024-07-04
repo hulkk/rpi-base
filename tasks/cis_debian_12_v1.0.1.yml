@@ -46,16 +46,24 @@
     - "127.0.0.0/8"
     - "::1"
 
-- name: Allow default outgoing services
+- name: Allow default outgoing services (port)
+  ufw:
+    rule: allow
+    direction: out
+    port: "{{ item }}"
+  loop:
+    - http
+    - https
+    - ntp
+  ignore_errors: "{{ ansible_check_mode }}"
+
+- name: Allow default outgoing services (name)
   ufw:
     rule: allow
     direction: out
     name: "{{ item }}"
   loop:
-    - http
-    - https
     - dns
-    - ntp
   ignore_errors: "{{ ansible_check_mode }}"
 
 - name: 4.1.7 Ensure ufw default deny firewall policy
