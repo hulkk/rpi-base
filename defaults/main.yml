@@ -1,3 +1,4 @@
 ---
 rpi_base_timezone: "Europe/Helsinki"
 rpi_base_ntp: "time.mikes.fi time1.mikes.fi time2.mikes.fi"
+rpi_base_default_network: "192.168.1.0/24"
