@@ -6,12 +6,6 @@
     state: restarted
   become: true
 
-- name: restart rsyslog
-  systemd:
-    name: rsyslog
-    state: restarted
-  become: true
-
 - name: exec locale-gen
   command:
     cmd: /usr/sbin/locale-gen
