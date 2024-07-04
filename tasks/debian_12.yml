@@ -45,3 +45,9 @@
     name: vm.swappiness
     value: '10'
     state: present
+
+- name: disable WiFi power_save
+  cron:
+    name: disable wlan0 power_save
+    job: "/usr/sbin/iw wlan0 set power_save off > /home/{{ ansible_user }}/power_save_cron.log"
+    special_time: reboot
