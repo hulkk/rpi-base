@@ -1,0 +1,9 @@
+---
+
+- name: include CIS hardening tasks for debian 12
+  include_tasks: cis_debian_12_v1.01.yml
+  args:
+    apply:
+      become: true
+  when:
+    - ansible_distribution == 'Debian'

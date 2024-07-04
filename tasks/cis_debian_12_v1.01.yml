@@ -1,0 +1,27 @@
+---
+
+# 1 Initial Setup
+
+# 2 Services
+
+# 3 Network
+
+# 4 Host Based Firewall
+
+# 5 Access Control
+
+# 5.1 Configure SSH Server
+
+- name: 5.1.1 Ensure permissions on /etc/ssh/sshd_config are configured
+  file:
+    path: '/etc/ssh/{{ item }}'
+    recurse: true
+    owner: root
+    group: root
+    mode: '0600'
+  loop:
+    - sshd_config
+    - sshd_config.d
+# 6 Logging and Auditing
+
+# 7 System Maintenance
