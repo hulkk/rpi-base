@@ -46,6 +46,15 @@
     - "127.0.0.0/8"
     - "::1"
 
+- name: 4.1.7 Ensure ufw default deny firewall policy
+  ufw:
+    default: deny
+    direction: "{{ item }}"
+  loop:
+    - incoming
+    - outgoing
+    - routed
+
 # 4.2 Configure nftables - N/A
 
 # 4.3 Configure iptables - N/A
