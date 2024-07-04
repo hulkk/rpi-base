@@ -1,0 +1,57 @@
+---
+
+- name: configure hostname
+  hostname:
+    name: "{{ inventory_hostname }}"
+
+- name: update hosts file
+  replace:
+    path: /etc/hosts
+    regexp: "raspberrypi"
+    replace: "{{ inventory_hostname }}"
+
+- name: enable en_us.utf8 in locale.gen
+  replace:
+    path: /etc/locale.gen
+    regexp: '^# en_US.UTF-8 UTF-8'
+    replace: 'en_US.UTF-8 UTF-8'
+  notify: exec locale-gen
+
+- name: configure timezone to {{ rpi_base_timezone }}
+  timezone:
+    name: "{{ rpi_base_timezone }}"
+  notify: restart rsyslog
+
+- name: configure syslog timestamp
+  template:
+    src: rsyslog.conf.j2
+    dest: /etc/rsyslog.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart rsyslog
+
+- name: flush handlers
+  meta: flush_handlers
+
+- name: configure ntp
+  template:
+    src: timesyncd.conf.j2
+    dest: /etc/systemd/timesyncd.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart systemd-timesyncd
+
+- name: install utils
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - vim
+    - apt-show-versions
+
+- name: configure swappiness
+  sysctl:
+    name: vm.swappiness
+    value: '10'
+    state: present
