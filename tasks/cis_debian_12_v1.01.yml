@@ -14,14 +14,14 @@
 
 - name: 5.1.1 Ensure permissions on /etc/ssh/sshd_config are configured
   file:
-    path: '/etc/ssh/{{ item }}'
-    recurse: true
+    path: "/etc/ssh/{{ item.path }}"
+    recurse: "{{ item.recurse }}"
     owner: root
     group: root
     mode: '0600'
   loop:
-    - sshd_config
-    - sshd_config.d
+    - { path: sshd_config, recurse: false }
+    - { path: sshd_config.d, recurse: true }
 
 # 6 Logging and Auditing
 
