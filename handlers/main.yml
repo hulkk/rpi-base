@@ -9,6 +9,7 @@
 - name: exec locale-gen
   command:
     cmd: /usr/sbin/locale-gen
+  become: true
 
 - name: restart systemd-timesyncd
   systemd:
