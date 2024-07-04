@@ -12,16 +12,17 @@
 
 # 5.1 Configure SSH Server
 
-- name: 5.1.1 Ensure permissions on /etc/ssh/sshd_config are configured
-  file:
-    path: "/etc/ssh/{{ item.path }}"
-    recurse: "{{ item.recurse }}"
+- name: 5.1 Configure SSH Server
+  template:
+    src: sshd_config.j2
+    dest: /etc/ssh/sshd_config
     owner: root
     group: root
     mode: '0600'
-  loop:
-    - { path: sshd_config, recurse: false }
-    # - { path: sshd_config.d/*.conf, recurse: true } # work in progress
+
+#- name: 5.1.1 Ensure permissions on /etc/ssh/sshd_config.d/*conf are configured
+
+#- name: 5.1.6 Ensure sshd Ciphers are configured
 
 # 6 Logging and Auditing
 
