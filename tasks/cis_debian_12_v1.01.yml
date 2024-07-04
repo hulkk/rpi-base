@@ -21,7 +21,7 @@
     mode: '0600'
   loop:
     - { path: sshd_config, recurse: false }
-    - { path: sshd_config.d, recurse: true }
+    # - { path: sshd_config.d/*.conf, recurse: true } # work in progress
 
 # 6 Logging and Auditing
 
