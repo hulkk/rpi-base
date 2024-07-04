@@ -1,7 +1,7 @@
 ---
 
 - name: include configuration tasks for debian 12
-  include_tasks: debian.yml
+  include_tasks: debian_12.yml
   args:
     apply:
       become: true

@@ -17,13 +17,6 @@
     replace: 'en_US.UTF-8 UTF-8'
   notify: exec locale-gen
 
-- name: enable fi_FI.UTF-8 in locale.gen
-  replace:
-    path: /etc/locale.gen
-    regexp: '^# fi_FI.UTF-8 UTF-8'
-    replace: 'fi_FI.UTF-8 UTF-8'
-  notify: exec locale-gen
-
 - name: configure timezone to {{ rpi_base_timezone }}
   timezone:
     name: "{{ rpi_base_timezone }}"
