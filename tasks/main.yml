@@ -1,5 +1,13 @@
 ---
 
+- name: include configuration tasks for debian
+  include_tasks: debian.yml
+  args:
+    apply:
+      become: true
+  when:
+    - ansible_lsb.id == 'Debian'
+
 - name: include CIS hardening tasks for debian 12
   include_tasks: cis_debian_12_v1.0.1.yml
   args:
