@@ -49,5 +49,5 @@
 - name: disable WiFi power_save
   cron:
     name: disable wlan0 power_save
-    job: "/usr/sbin/iw wlan0 set power_save off > /home/{{ ansible_user }}/power_save_cron.log"
+    job: "/usr/sbin/iw wlan0 set power_save off > /home/{{ ansible_user_id }}/power_save_cron.log"
     special_time: reboot
