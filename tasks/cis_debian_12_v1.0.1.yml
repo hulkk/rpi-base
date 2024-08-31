@@ -122,6 +122,7 @@
     - incoming
     - outgoing
     - routed
+  ignore_errors: "{{ ansible_check_mode }}"
 
 # 4.2 Configure nftables - N/A
 
