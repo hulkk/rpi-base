@@ -66,7 +66,7 @@
 - name: Allow SSH with ufw
   ufw:
     rule: allow
-    from_ip: "{{ rpi_base_default_network }}"
+    from_ip: "{{ rpi_base_local_network }}"
     name: OpenSSH
   ignore_errors: "{{ ansible_check_mode }}"
 
