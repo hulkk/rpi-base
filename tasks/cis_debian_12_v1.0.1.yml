@@ -83,6 +83,7 @@
   loop:
     - in
     - out
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: 4.1.4 Ensure ufw loopback traffic is configured (deny)
   ufw:
