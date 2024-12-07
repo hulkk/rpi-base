@@ -1,5 +1,10 @@
 ---
 
+- name: assert that default network is defined for firewall rules
+  assert:
+    that: rpi_base_local_network is defined
+    fail_msg: please define rpi_base_local_network as e.g. 192.168.1.0/24
+
 - name: include configuration tasks for debian 12
   include_tasks: debian_12.yml
   args:
@@ -17,8 +22,3 @@
   when:
     - ansible_lsb.id == 'Debian'
     - ansible_lsb.major_release == '12'
-
-- name: assert that default network is defined for firewall rules
-  assert:
-    that: rpi_base_local_network is defined
-    fail_msg: please define rpi_base_local_network as e.g. 192.168.1.0/24
