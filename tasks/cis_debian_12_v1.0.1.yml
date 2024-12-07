@@ -47,6 +47,7 @@
   loop:
     - "127.0.0.0/8"
     - "::1"
+  ignore_errors: "{{ ansible_check_mode }}"
 
 - name: Allow default outgoing services (port)
   ufw:
@@ -76,6 +77,7 @@
     - incoming
     - outgoing
     - routed
+  ignore_errors: "{{ ansible_check_mode }}"
 
 # 4.2 Configure nftables - N/A
 
